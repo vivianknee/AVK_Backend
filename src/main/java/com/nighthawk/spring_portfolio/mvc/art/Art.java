@@ -10,9 +10,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.TypeDef;
-
 import com.vladmihalcea.hibernate.type.json.JsonType;
 
+import jakarta.persistence.Convert;
+import org.hibernate.annotations.JdbcTypeCode;
+ 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
