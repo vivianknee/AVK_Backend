@@ -14,27 +14,19 @@ public class ArtGeneration {
             ArtJpaRepository repository) {
         return args -> {
             Art a1 = new Art(
-                "When life gives you lemons, make lemonade", 
-                "happy"
+                "name of artist", 
+                20,
+                36
             ); 
 
             Art a2 = new Art(
-                "Keep calm and carry on", 
-                "sad"
-            );
-
-            Art a3 = new Art(
-                "Believe in yourself, and you'll achieve great things.", 
-                "sad"
-            );
-
-            Art a4 = new Art(
-                "Happiness is a journey, not a destination.", 
-                "sad"
-            );
+                "name of artist", 
+                20,
+                36
+            ); 
 
             repository.saveAll(
-                    List.of(a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15)
+                    List.of(a1, a2)
             );
         };
     }

@@ -1,4 +1,4 @@
-package com.nighthawk.spring_portfolio.mvc.quote;
+package com.nighthawk.spring_portfolio.mvc.art;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +20,6 @@ import com.vladmihalcea.hibernate.type.json.JsonType;
 @TypeDef(name="json", typeClass=JsonType.class)
 @Table(name = "art")
 
-
 public class Art {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,6 +32,8 @@ public class Art {
     private String name; 
     private Integer years;
     private Integer age; 
+    private int up;
+    private int down;
 
     public Art(String name, Integer years, Integer age) {
         this.name = name; 
