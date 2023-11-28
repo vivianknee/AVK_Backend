@@ -51,20 +51,4 @@ public class ArtApiController {
         // Bad ID
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);  // Failed HTTP response: status code, headers, and body
     }
-
-    /* Update Jeer
-     */
-    @PostMapping("/dislike/{id}")
-    public ResponseEntity<Art> setDislike(@PathVariable long id) {
-        Optional<Art> optional = repository.findById(id);
-        if (optional.isPresent()) {  // Good ID
-            Art art = optional.get();
-            art.setDown(art.getDown()+1);
-            repository.save(art);
-            return new ResponseEntity<>(art, HttpStatus.OK);
-        }
-        // Bad ID
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
-
 }
