@@ -1,4 +1,4 @@
-package com.nighthawk.spring_portfolio.mvc.art;
+package com.nighthawk.spring_portfolio;
 
 import java.util.Arrays;
 
