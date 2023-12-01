@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nighthawk.spring_portfolio.mvc.Sorting;
+
 @RestController
-@CrossOrigin(origins = {"http://127.0.0.1:5500", "http://127.0.0.1:4100/"})
+@CrossOrigin(origins = {"http://127.0.0.1:4100/"})
 @RequestMapping(path = "/api/art")
 
 public class ArtApiController {
