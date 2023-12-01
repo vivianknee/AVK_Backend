@@ -1,55 +1,40 @@
 package com.nighthawk.spring_portfolio.mvc.art;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@RestController
-@CrossOrigin(origins = {"http://127.0.0.1:4100/"})
-@RequestMapping(path = "/api/art")
+import java.util.List;
+import java.util.Optional;
+
+@RestController // annotation to simplify the creation of RESTful web services
+@RequestMapping("/api/artworks") 
 
 public class ArtApiController {
-
     @Autowired
-    private ArtJpaRepository repository; 
+    private ArtJpaRepository repository;
 
     @GetMapping("/")
     public ResponseEntity<List<Art>> getArt() {
-        // ResponseEntity returns List of art provide by JPA findAll()
+        // ResponseEntity returns List of Jokes provide by JPA findAll()
         return new ResponseEntity<>( repository.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<Art> addArt(@RequestBody Art newArt) {
-        Art savedArt = repository.save(newArt);
-        return new ResponseEntity<>(savedArt, HttpStatus.CREATED);
-    }
-
+    //Update Like
     @PostMapping("/like/{id}")
     public ResponseEntity<Art> setLike(@PathVariable long id) {
-        /* 
-        * Optional (below) is a container object which helps determine if a result is present. 
-        * If a value is present, isPresent() will return true
-        * get() will return the value.
-        */
+    
         Optional<Art> optional = repository.findById(id);
         if (optional.isPresent()) {  // Good ID
             Art art = optional.get();  // value from findByID
-            art.setUp(art.getUp()+1); // increment value
+            art.setLike(art.getLike()+1); // increment value
             repository.save(art);  // save entity
             return new ResponseEntity<>(art, HttpStatus.OK);  // OK HTTP response: status code, headers, and body
         }
         // Bad ID
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);  // Failed HTTP response: status code, headers, and body
     }
+
+    
 }

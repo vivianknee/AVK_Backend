@@ -4,34 +4,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.*;
 
-@Data  
+@Data  // Annotations to simplify writing code (ie constructors, setters)
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity  
+@Entity 
 
 public class Art {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(unique=true)
-    //artist stats
-    private String name; 
-    private Integer years;
-    private Integer age; 
+    private String ArtName;
+    private String ArtistName;
+    private Integer ArtistAge;
 
-    //likes
-    private int up;
-
-    public Art(String name, Integer years, Integer age) {
-        this.name = name; 
-        this.years = years; 
-        this.age = age;
-   }
-
+    private int like;
 }
-
-
