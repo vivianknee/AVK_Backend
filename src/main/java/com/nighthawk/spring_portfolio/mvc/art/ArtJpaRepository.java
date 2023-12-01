@@ -9,6 +9,14 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ArtJpaRepository extends JpaRepository<Art, Long> {
     //void save(String name); 
-    List<Art> findByYearsIgnoreCase(String years);
-    List<Art> findByAgeIgnoreCase(String age);
+    Art findByNameArt(String name);
+    List<Art> findAllByOrderByArtDsc();
+    List<Art> findByYearsArts(Integer years);
+    List<Art> findByAgeArts(Integer age);
 }
+
+
+
+// void save(String Joke);
+//     List<Jokes> findAllByOrderByJokeAsc();
+//     List<Jokes> findByJokeIgnoreCase(String joke);

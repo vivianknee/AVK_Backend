@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nighthawk.spring_portfolio.mvc.Sorting;
-
 @RestController
 @CrossOrigin(origins = {"http://127.0.0.1:4100/"})
 @RequestMapping(path = "/api/art")
@@ -25,8 +23,9 @@ public class ArtApiController {
     @Autowired
     private ArtJpaRepository repository; 
 
-    @GetMapping
+    @GetMapping("/")
     public ResponseEntity<List<Art>> getArt() {
+        // ResponseEntity returns List of art provide by JPA findAll()
         return new ResponseEntity<>( repository.findAll(), HttpStatus.OK);
     }
 

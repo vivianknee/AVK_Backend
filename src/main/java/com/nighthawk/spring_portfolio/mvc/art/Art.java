@@ -4,36 +4,27 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import jakarta.persistence.*;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
-
-//import org.hibernate.annotations.TypeDef;
-// import com.vladmihalcea.hibernate.type.json.JsonType;
-
- 
-@Data
+@Data  
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-//@TypeDef(name="json", typeClass=JsonType.class)
-@Table(name = "art")
+@Entity  
 
 public class Art {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotEmpty
-    @Size(min=5)
     @Column(unique=true)
-
+    //artist stats
     private String name; 
     private Integer years;
     private Integer age; 
+
+    //likes
     private int up;
-    private int down;
 
     public Art(String name, Integer years, Integer age) {
         this.name = name; 

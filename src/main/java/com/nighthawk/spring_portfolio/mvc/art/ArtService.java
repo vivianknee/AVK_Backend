@@ -13,7 +13,7 @@ public class ArtService {
         this.artRepository = artRepository;
     }
 
-    public void saveQuotes(Art[] arts){
+    public void saveArt(Art[] arts){
         for (Art art:  arts){
             artRepository.save(art);
         }
