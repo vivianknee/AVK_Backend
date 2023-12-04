@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.nighthawk.spring_portfolio.mvc.art.ArtJpaRepository;
+import com.nighthawk.spring_portfolio.mvc.art.Art;
 import com.nighthawk.spring_portfolio.mvc.jokes.Jokes;
 import com.nighthawk.spring_portfolio.mvc.jokes.JokesJpaRepository;
 
@@ -24,6 +26,7 @@ public class ModelInit {
     @Autowired JokesJpaRepository jokesRepo;
     @Autowired NoteJpaRepository noteRepo;
     @Autowired PersonDetailsService personService;
+    @Autowired ArtJpaRepository artRepo;
 
     @Bean
     CommandLineRunner run() {  // The run() method will be executed after the application starts
@@ -50,6 +53,13 @@ public class ModelInit {
                     Note n = new Note(text, person);  // constructor uses new person as Many-to-One association
                     noteRepo.save(n);  // JPA Save                  
                 }
+            }
+
+            String[] artArray = Art.init();
+            for (String artName : artArray) {
+                List<Art> artNameFound = artRepo.findByArtNameIgnoreCase(artName);
+                if (artNameFound.size() == 0)
+                    artRepo.save(new Art(null, artName, 0));
             }
 
         };
