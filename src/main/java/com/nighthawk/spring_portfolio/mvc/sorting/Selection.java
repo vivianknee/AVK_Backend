@@ -1,7 +1,6 @@
 package com.nighthawk.spring_portfolio.mvc.sorting;
 
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 
 import com.nighthawk.spring_portfolio.mvc.art.Art;
