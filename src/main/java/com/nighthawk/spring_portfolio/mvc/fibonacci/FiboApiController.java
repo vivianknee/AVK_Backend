@@ -6,15 +6,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-// import com.nighthawk.spring_portfolio.mvc.sortingAlgorithm.SortingAlgorithm;
-// import com.nighthawk.spring_portfolio.mvc.sortingAlgorithm.SortRequest;
-
 @RestController
-@RequestMapping("/api/fibo") // Sets the path to our dijkstra algorithm
-public class FiboApiController {
-    // private JSONObject body; //last run result
-    // private HttpStatus status; //last run status
-    String last_run = null; //last run day of month
+@RequestMapping("/api/fibo") 
+public class FiboApiController { 
+    String last_run = null;  
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> getFibonacci(@PathVariable Integer id) {
