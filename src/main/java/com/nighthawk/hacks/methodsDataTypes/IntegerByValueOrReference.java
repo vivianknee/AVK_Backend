@@ -10,7 +10,6 @@ public class IntegerByValueOrReference {
                             n.hashCode()); 
 
         n += 10;  // behind the scenes, this is:  n = new Integer(n+10)
-        
         System.out.println("\tAfter change: n = " + 
                             n + // prints 15
                             " hash code = " + 

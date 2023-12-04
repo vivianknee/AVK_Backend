@@ -8,7 +8,6 @@ public class IntByValue {
         n = n += 10;
         System.out.println("\tAfter n += 10: n = " + n); // prints 10
     }
-
     public static void main(String[] args) {
         int n = 5;
         System.out.println("Main method before changeInt(n): n = " + n); // prints 5
