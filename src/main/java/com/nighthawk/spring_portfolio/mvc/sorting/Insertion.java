@@ -8,13 +8,18 @@ import com.nighthawk.spring_portfolio.mvc.art.Art;
 public class Insertion extends Sorting {
     @Override
     public List<Art> sortArt(List<Art> unsortedArts) {
-        unsortedArts.sort(new Comparator<Art>() {
-            @Override
-            public int compare(Art o1, Art o2) {
-                return o1.getLike() - o2.getLike();
+        for (int i = 1; i < unsortedArts.size(); i++) {
+            Art currArt = unsortedArts.get(i);
+            int j = i - 1;
+
+            // find currArt correct spot
+            while (j >= 0 && unsortedArts.get(j).getLike() < currArt.getLike()) {
+                unsortedArts.set(j + 1, unsortedArts.get(j));
+                j -= 1;
             }
-        });
+            // put currArt at correct spot
+            unsortedArts.set(j + 1, currArt);
+        }
         return unsortedArts;
     }
-       
-    }
+}
