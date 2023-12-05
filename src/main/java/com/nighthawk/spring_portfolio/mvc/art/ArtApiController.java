@@ -1,6 +1,5 @@
 package com.nighthawk.spring_portfolio.mvc.art;
 
-import org.junit.internal.requests.SortingRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,17 +51,17 @@ public class ArtApiController {
         // ResponseEntity returns List of Jokes provide by JPA findAll()
         List<Art> arts = repository.findAll();
 
-        Sorting sorter = new Bubble();
-        if (method == "Bubble") {
+        Sorting sorter = new Insertion();
+        if (method == "bubble") {
             sorter = new Bubble();
         }
-        if (method == "Insertion") {
+        if (method == "insertion") {
             sorter = new Insertion();
         }
-        if (method == "Merge") {
+        if (method == "merge") {
             sorter = new Merge();
         }
-        if (method == "Selection") {
+        if (method == "selection") {
             sorter = new Selection();
         }
 
