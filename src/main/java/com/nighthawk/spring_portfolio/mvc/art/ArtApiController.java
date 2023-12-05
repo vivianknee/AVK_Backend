@@ -1,5 +1,6 @@
 package com.nighthawk.spring_portfolio.mvc.art;
 
+import org.junit.internal.requests.SortingRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import com.nighthawk.spring_portfolio.mvc.sorting.Insertion;
 import com.nighthawk.spring_portfolio.mvc.sorting.Merge;
 import com.nighthawk.spring_portfolio.mvc.sorting.Selection;
 import com.nighthawk.spring_portfolio.mvc.sorting.Sorting;
+import com.nighthawk.spring_portfolio.mvc.sorting.SortingResult;
 
 import java.util.List;
 import java.util.Optional;
@@ -46,7 +48,7 @@ public class ArtApiController {
     }
 
     @PostMapping("/sorted/{method}")
-    public ResponseEntity<List<Art>> getSortedArts(String method) {
+    public ResponseEntity<SortingResult> getSortedArts(String method) {
         // ResponseEntity returns List of Jokes provide by JPA findAll()
         List<Art> arts = repository.findAll();
 
@@ -65,8 +67,8 @@ public class ArtApiController {
         }
 
         // use your sorting class here to sort the list
-        List<Art> sortedArts = sorter.sortArt(arts);
+        SortingResult sortResult = sorter.getSortingResult(arts);
 
-        return new ResponseEntity<>(sortedArts, HttpStatus.OK);
+        return new ResponseEntity<>(sortResult, HttpStatus.OK);
     }
 }

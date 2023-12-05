@@ -7,26 +7,20 @@ import com.nighthawk.spring_portfolio.mvc.art.Art;
 
 public class Sorting {
 
-    protected long finalTime;
-
-    public Sorting() {
-        this.finalTime = 0;
-    }
-
-    public long getFinalTime() {
-        return finalTime;
-    }
-
-    public List<Art> sortArt(List<Art> unsortedArts) {
+    //override to create specific sort
+    protected List<Art> sortArt(List<Art> unsortedArts) {
         return new ArrayList<>();
     }
 
-    public List<Art> getFinalTime(List<Art> unsortedArts) {
+    public SortingResult getSortingResult(List<Art> unsortedArts) {
         long startTime = System.nanoTime();
         List<Art> result = sortArt(unsortedArts);
         long endTime = System.nanoTime();
-        finalTime = endTime - startTime;
-        return result;
+        long finalTime = endTime - startTime;
+        SortingResult sResult = new SortingResult();
+        sResult.sortTime = finalTime;
+        sResult.sortedArts = result;
+        return sResult;
     }
     
 }
