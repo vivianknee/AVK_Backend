@@ -30,5 +30,4 @@ public class Bubble extends Sorting {
         */
         return unsortedArts;
     }
-
-    }
+}
