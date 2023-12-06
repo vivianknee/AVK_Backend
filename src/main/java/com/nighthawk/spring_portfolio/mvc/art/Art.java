@@ -40,7 +40,28 @@ public class Art {
             "Nighthawks",
             "The Starry Night",
             "Sunflowers",
-            "The Son of Man"
+            "The Son of Man",
+            "The Wanderer Above the Sea of Fog",
+            "The Creation of Adam",
+            "Liberty Leading the People",
+            "Impression Sunrise",
+            "The Raft of the Medusa",
+            "Branches with Almond Blossom",
+            "The Walk Woman With A Parasol",
+            "Argenteuil (Red Boats)",
+            "Napoleon Crossing the Alps",
+            "The Water Lily Pond",
+            "The Night Watch",
+            "The Swing",
+            "Poker Game",
+            "Rainy Day, Boston",
+            "Composition VII",
+            "The Card Players",
+            "Campbell’s Soup Cans",
+            "Luncheon of the Boating Party",
+            "The Two Fridas",
+            "The Wounded Deer",
+            "Warrior"
         };
         return artArray;
     }

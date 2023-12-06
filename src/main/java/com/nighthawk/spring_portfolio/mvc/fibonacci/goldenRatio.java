@@ -2,7 +2,7 @@ package com.nighthawk.spring_portfolio.mvc.fibonacci;
 
 import java.util.ArrayList;
 
-public class ForLoopFibo extends Fibo {
+public class goldenRatio extends Fibo {
     public static ArrayList<Integer> findNth(int num) {
         if (num <= 0) {
             throw new IllegalArgumentException("Input must be a positive integer");
