@@ -1,6 +1,7 @@
 package com.nighthawk.spring_portfolio.mvc.sorting;
 
-import java.util.Comparator;
+import java.util.ArrayList;
+//import java.util.Comparator;
 import java.util.List;
 
 import com.nighthawk.spring_portfolio.mvc.art.Art;
@@ -8,13 +9,49 @@ import com.nighthawk.spring_portfolio.mvc.art.Art;
 public class Merge extends Sorting {
     @Override
     public List<Art> sortArt(List<Art> unsortedArts) {
-        unsortedArts.sort(new Comparator<Art>() {
-            @Override
-            public int compare(Art o1, Art o2) {
-                return o1.getLike() - o2.getLike();
-            }
-        });
-        return unsortedArts;
+        // list empty or 1 element prob not gonna happen but precaution
+        if (unsortedArts.size()<=1){
+            return unsortedArts;
+        }
+        //split list two (half
+        int midIndex = unsortedArts.size()/2;
+        List<Art> left = new ArrayList<>(unsortedArts.subList(0, midIndex));
+        List<Art> right = new ArrayList<>(unsortedArts.subList(midIndex, unsortedArts.size()));
+        
+        //recursive to keep on splitting and sorting list
+        left = sortArt(left);
+        right = sortArt(right);
+
+        // merge sorted halves when done each time
+        return merge(left, right);
     }
-       
+    private List<Art> merge(List<Art> left, List<Art> right) {
+        List<Art> mergeDone= new ArrayList<>();
+        int leftIndex = 0;
+        int rightIndex = 0;
+
+        // compare elements in each half
+        while (leftIndex < left.size() && rightIndex < right.size()) {
+            if (left.get(leftIndex).getLike() >= right.get(rightIndex).getLike()) {
+                mergeDone.add(left.get(leftIndex));
+                leftIndex++;
+            } else {
+                mergeDone.add(right.get(rightIndex));
+                rightIndex++;
+            }
+        }
+
+        // add leftoever elements from left
+        while (leftIndex < left.size()) {
+            mergeDone.add(left.get(leftIndex));
+            leftIndex++;
+        }
+
+        // add leftoever elements from right
+        while (rightIndex < right.size()) {
+            mergeDone.add(right.get(rightIndex));
+            rightIndex++;
+        }
+
+       return mergeDone;
     }
