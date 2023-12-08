@@ -1,14 +1,20 @@
 package com.nighthawk.spring_portfolio.mvc.sorting;
 
 import java.util.ArrayList;
-//import java.util.Comparator;
 import java.util.List;
 
 import com.nighthawk.spring_portfolio.mvc.art.Art;
 
 public class Merge extends Sorting {
     @Override
-    public List<Art> sortArt(List<Art> unsortedArts) {
+    public SortingResult sortArt(List<Art> unsortedArts) {
+        SortingResult result = new SortingResult();
+        List<Art> sorted = sortArtInternal(unsortedArts);
+        result.sortedArts = sorted;
+        return result;
+    }
+    
+    private List<Art> sortArtInternal(List<Art> unsortedArts) {
         // list empty or 1 element prob not gonna happen but precaution
         if (unsortedArts.size()<=1){
             return unsortedArts;
@@ -19,8 +25,8 @@ public class Merge extends Sorting {
         List<Art> right = new ArrayList<>(unsortedArts.subList(midIndex, unsortedArts.size()));
         
         //recursive to keep on splitting and sorting list
-        left = sortArt(left);
-        right = sortArt(right);
+        left = sortArtInternal(left);
+        right = sortArtInternal(right);
 
         // merge sorted halves when done each time
         return merge(left, right);
@@ -41,13 +47,13 @@ public class Merge extends Sorting {
             }
         }
 
-        // add leftoever elements from left
+        // add leftover elements from left
         while (leftIndex < left.size()) {
             mergeDone.add(left.get(leftIndex));
             leftIndex++;
         }
 
-        // add leftoever elements from right
+        // add leftover elements from right
         while (rightIndex < right.size()) {
             mergeDone.add(right.get(rightIndex));
             rightIndex++;
@@ -55,3 +61,5 @@ public class Merge extends Sorting {
 
        return mergeDone;
     }
+
+}

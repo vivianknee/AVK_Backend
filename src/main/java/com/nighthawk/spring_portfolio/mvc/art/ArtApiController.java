@@ -47,22 +47,25 @@ public class ArtApiController {
     }
 
     @PostMapping("/sorted/{method}")
-    public ResponseEntity<SortingResult> getSortedArts(String method) {
+    public ResponseEntity<SortingResult> getSortedArts(@PathVariable String method) throws Exception {
         // ResponseEntity returns List of Jokes provide by JPA findAll()
         List<Art> arts = repository.findAll();
 
-        Sorting sorter = new Insertion();
-        if (method == "bubble") {
+        Sorting sorter = new Bubble();
+        if (method.contains("bubble")) {
             sorter = new Bubble();
         }
-        if (method == "insertion") {
+        else if (method.contains("insertion")) {
             sorter = new Insertion();
         }
-        if (method == "merge") {
+        else if (method.contains("merge")) {
             sorter = new Merge();
         }
-        if (method == "selection") {
+        else if (method.contains("selection")) {
             sorter = new Selection();
+        }
+        else {
+            throw new Exception(method);
         }
 
         // use your sorting class here to sort the list
