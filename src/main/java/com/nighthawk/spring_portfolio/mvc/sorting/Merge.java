@@ -61,5 +61,3 @@ public class Merge extends Sorting {
 
        return mergeDone;
     }
-
-}
