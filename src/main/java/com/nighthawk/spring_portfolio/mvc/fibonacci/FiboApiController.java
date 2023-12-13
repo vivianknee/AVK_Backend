@@ -5,33 +5,23 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.function.Function;
 
 @RestController
 @RequestMapping("/api/fibo")
 public class FiboApiController {
 
-    @PostMapping("/generate/{id}")
-    public ResponseEntity<Object> generateFibonacci(@PathVariable Integer id) {
-        HashMap<String, ArrayList<Integer>> fibonacciData = new HashMap<>();
-
-        fibonacciData.put("forLoop", calculateFibonacci(id, num -> IterativeFibonacci.calculateFibonacci(num)));
-        fibonacciData.put("matrixExpo", calculateFibonacci(id, num -> MatrixExponentiation.calculateFibonacci(num)));
-        fibonacciData.put("binetFormula", calculateFibonacci(id, num -> binetFormula.calculateFibonacci(num)));
-        fibonacciData.put("recursive", calculateFibonacci(id, num -> RecursiveFibonacci.calculateFibonacci(num)));
-
-        return new ResponseEntity<>(fibonacciData, HttpStatus.OK);
+    @PostMapping("/binet/{id}")
+    public ResponseEntity<ArrayList<Integer>> calculateFibonacciUsingBinet(@PathVariable int id) {
+        ArrayList<Integer> fibonacciList = binetFormula.calculateFibonacci(id);
+        return new ResponseEntity<>(fibonacciList, HttpStatus.OK);
     }
 
-    private ArrayList<Integer> calculateFibonacci(int num, Function<Integer, ArrayList<Integer>> fibonacciMethod) {
-        if (num <= 0) {
-            throw new IllegalArgumentException("Input must be a positive integer");
-        }
-        return fibonacciMethod.apply(num);
+    @PostMapping("/golden/{id}")
+    public ResponseEntity<ArrayList<Integer>> calculateFibonacciUsingGoldenRatio(@PathVariable int id) {
+        ArrayList<Integer> fibonacciList = goldenRatio.findNth(id);
+        return new ResponseEntity<>(fibonacciList, HttpStatus.OK);
     }
 
-    // Your Fibonacci calculation classes: IterativeFibonacci, MatrixExponentiation,
-    // binetFormula, RecursiveFibonacci
-    // Ensure these classes have static methods like calculateFibonacci(int num)
+    // Other endpoints for different Fibonacci methods can also be included
+    // similarly
 }
